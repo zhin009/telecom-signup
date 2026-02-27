@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电信服务开户 - 示例界面</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">📡</span>
+                <h1>迅联通信</h1>
+            </div>
+            <p class="tagline">快速开户 · 优质网络 · 贴心服务</p>
+        </header>
+
+        <main class="main-content">
+            <form id="signupForm" class="signup-form">
+                <!-- 步骤指示器 -->
+                <div class="progress-indicator">
+                    <div class="step active" data-step="1">
+                        <span class="step-number">1</span>
+                        <span class="step-label">用户信息</span>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step" data-step="2">
+                        <span class="step-number">2</span>
+                        <span class="step-label">选择套餐</span>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step" data-step="3">
+                        <span class="step-number">3</span>
+                        <span class="step-label">选择号码</span>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step" data-step="4">
+                        <span class="step-number">4</span>
+                        <span class="step-label">确认提交</span>
+                    </div>
+                </div>
+
+                <!-- 步骤 1: 用户信息 -->
+                <div class="form-step" id="step1">
+                    <h2 class="step-title">填写用户信息</h2>
+                    <div class="form-group">
+                        <label for="fullName">姓名 <span class="required">*</span></label>
+                        <input type="text" id="fullName" name="fullName" required placeholder="请输入真实姓名">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="idType">证件类型 <span class="required">*</span></label>
+                            <select id="idType" name="idType" required>
+                                <option value="">请选择</option>
+                                <option value="idcard">身份证</option>
+                                <option value="passport">护照</option>
+                                <option value="military">军官证</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="idNumber">证件号码 <span class="required">*</span></label>
+                            <input type="text" id="idNumber" name="idNumber" required placeholder="请输入证件号码">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">联系电话 <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" required placeholder="请输入手机号码" pattern="[0-9]{11}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">电子邮箱</label>
+                        <input type="email" id="email" name="email" placeholder="example@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">详细地址</label>
+                        <textarea id="address" name="address" rows="3" placeholder="请输入详细安装地址"></textarea>
+                    </div>
+
+                    <button type="button" class="btn btn-primary btn-next" onclick="nextStep(2)">下一步</button>
+                </div>
+
+                <!-- 步骤 2: 套餐选择 -->
+                <div class="form-step" id="step2" style="display: none;">
+                    <h2 class="step-title">选择服务套餐</h2>
+                    <div class="plans-container">
+                        <div class="plan-card" data-plan="basic">
+                            <div class="plan-header">
+                                <h3>基础套餐</h3>
+                                <div class="plan-price">
+                                    <span class="currency">¥</span>
+                                    <span class="amount">59</span>
+                                    <span class="period">/月</span>
+                                </div>
+                            </div>
+                            <ul class="plan-features">
+                                <li>✓ 20GB 国内流量</li>
+                                <li>✓ 200 分钟通话</li>
+                                <li>✓ 100 条短信</li>
+                                <li>✓ 5G 网络</li>
+                            </ul>
+                            <button type="button" class="btn btn-plan" onclick="selectPlan('basic')">选择此套餐</button>
+                        </div>
+
+                        <div class="plan-card featured" data-plan="standard">
+                            <div class="plan-badge">热门推荐</div>
+                            <div class="plan-header">
+                                <h3>标准套餐</h3>
+                                <div class="plan-price">
+                                    <span class="currency">¥</span>
+                                    <span class="amount">99</span>
+                                    <span class="period">/月</span>
+                                </div>
+                            </div>
+                            <ul class="plan-features">
+                                <li>✓ 50GB 国内流量</li>
+                                <li>✓ 500 分钟通话</li>
+                                <li>✓ 200 条短信</li>
+                                <li>✓ 5G 优先网络</li>
+                                <li>✓ 免费来电显示</li>
+                            </ul>
+                            <button type="button" class="btn btn-plan" onclick="selectPlan('standard')">选择此套餐</button>
+                        </div>
+
+                        <div class="plan-card" data-plan="premium">
+                            <div class="plan-header">
+                                <h3>尊享套餐</h3>
+                                <div class="plan-price">
+                                    <span class="currency">¥</span>
+                                    <span class="amount">159</span>
+                                    <span class="period">/月</span>
+                                </div>
+                            </div>
+                            <ul class="plan-features">
+                                <li>✓ 100GB 国内流量</li>
+                                <li>✓ 1000 分钟通话</li>
+                                <li>✓ 500 条短信</li>
+                                <li>✓ 5G 极速网络</li>
+                                <li>✓ 免费来电显示</li>
+                                <li>✓ 国际漫游优惠</li>
+                            </ul>
+                            <button type="button" class="btn btn-plan" onclick="selectPlan('premium')">选择此套餐</button>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(1)">上一步</button>
+                        <button type="button" class="btn btn-primary btn-next" onclick="nextStep(3)" id="planNextBtn" disabled>下一步</button>
+                    </div>
+                </div>
+
+                <!-- 步骤 3: 号码选择 -->
+                <div class="form-step" id="step3" style="display: none;">
+                    <h2 class="step-title">选择手机号码</h2>
+                    <div class="number-filter">
+                        <label for="numberType">号码类型：</label>
+                        <select id="numberType" onchange="filterNumbers()">
+                            <option value="all">全部</option>
+                            <option value="lucky">吉祥号</option>
+                            <option value="normal">普通号</option>
+                        </select>
+                    </div>
+                    <div class="numbers-grid" id="numbersGrid">
+                        <!-- 号码将通过 JS 动态生成 -->
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(2)">上一步</button>
+                        <button type="button" class="btn btn-primary btn-next" onclick="nextStep(4)" id="numberNextBtn" disabled>下一步</button>
+                    </div>
+                </div>
+
+                <!-- 步骤 4: 确认提交 -->
+                <div class="form-step" id="step4" style="display: none;">
+                    <h2 class="step-title">确认信息并提交</h2>
+                    <div class="summary-box">
+                        <h3>申请信息摘要</h3>
+                        <div class="summary-item">
+                            <span class="label">姓名：</span>
+                            <span class="value" id="summaryName">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">联系电话：</span>
+                            <span class="value" id="summaryPhone">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">选择套餐：</span>
+                            <span class="value" id="summaryPlan">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">手机号码：</span>
+                            <span class="value" id="summaryNumber">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">月费：</span>
+                            <span class="value" id="summaryPrice">-</span>
+                        </div>
+                    </div>
+                    <div class="terms-checkbox">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">我已阅读并同意 <a href="#" class="link">服务条款</a> 和 <a href="#" class="link">隐私政策</a></label>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(3)">上一步</button>
+                        <button type="submit" class="btn btn-success">提交申请</button>
+                    </div>
+                </div>
+            </form>
+        </main>
+
+        <footer class="footer">
+            <p>© 2026 迅联通信 - 本页面为示例演示，不含真实品牌</p>
+            <p class="disclaimer">仅供学习练习使用</p>
+        </footer>
+    </div>
+
+    <!-- 成功提示模态框 -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="success-icon">✓</div>
+            <h2>申请提交成功！</h2>
+            <p>我们将在 24 小时内联系您确认开户事宜</p>
+            <p class="reference-number">申请编号：<span id="referenceNumber"></span></p>
+            <button class="btn btn-primary" onclick="closeModal()">关闭</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
